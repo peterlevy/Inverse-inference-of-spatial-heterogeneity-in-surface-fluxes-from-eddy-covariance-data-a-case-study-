@@ -1,0 +1,191 @@
+\section{Results}\label{results}
+
+Figure \ref{fig:HvsG_byWwater_Stor} shows the basis of our analysis of
+sensible heat fluxes to demonstrate the method. On land, a relatively
+constant fraction of incoming radiation is converted to sensible heat,
+producing a clear relationship in the green data points, described by
+the slope \(b_G\). At night, the land cools via sensible heat loss, so
+the intercept is negative. On water, most of the incoming radiation is
+converted to latent heat (i.e.~evaporation), and there is no strong
+dependence of \(H\) on \(G\) in the dark blue points, meaning the slope
+\(b_G\) is close to zero over water. Without using any \emph{a priori} 
+knowledge of the surface type classification or its spatial
+distribution, we can use to Equation \ref{eq:pred_Fbarhat} to estimate
+the slope \(b_G\) in the four cardinal quadrants around the flux tower.
+In this simplest case, we set: \(n_u = 1\) (i.e.~no distinction between
+surface types) so the only fixed effect is a single intercept \(\beta\),
+\(n_s = 4\) (i.e.~the four cardinal quadrants), and use a single
+temporal covariate \(\mathbf{Z} = G\). With this, we fit the random
+slope term \(b_G\) for each quadrant, and with the Bayesian methodology,
+we estimate their posterior distributions (Figure
+\ref{fig:Beta_SWI_byS04_Stor}). This shows that \(b_G\) is higher in the
+all-land quadrants (\(s_{1}\) and \(s_{3}\)), lowest in the all-water
+quadrant (\(s_{2}\)), and intermediate in the mixed quadrant
+(\(s_{4}\)). The model thus correctly retrieves the spatial pattern that
+we know to be present in the data. The posterior distributions are
+narrow, meaning we have high certainty about these parameter values.
+
+We can repeat this with a further subdivision into 16 subquadrants (grey
+lines in Figure 1)(Figure \ref{fig:Beta_SWI_byS16_Stor}). Here, the
+posterior distributions of the slope \(b_G\) are still narrowly-defined
+in the regions where the footprint gives high weightings, and generally
+yields the known correct result (high values on land, low values on
+water). Because the predominant wind directions are easterly and
+westerly, footprint weightings are low in the subquadrants to the north
+and south (top and bottom rows). Consequently, parameter estimates for
+these less frequently sampled regions are uncertain, the distributions
+are wide, and even the sign of the parameter values is uncertain. There
+is an apparent problem of mirroring, where adjacent subquadrants have
+positive and negative values, which sum to a plausible mean. This can be
+removed by stipulating a stronger prior which makes these less
+plausible, adding a spatial autocorrelation term (stating that similar
+values will tend to occur together), or more simply, using the spatial
+surface type distribution.
+
+Applying the model in this last way, we can perform a more sophisticated
+analysis which uses the spatial distribution of surface types, and uses
+information-theoretic criteria to discern the appropriate number of
+spatial random effect terms to include. In this case, we set:
+\(n_u = 2\) (i.e.~using the map of water and land), a single temporal
+covariate \(\mathbf{X} = G\), and fixed effects for the slopes
+\(\beta_{G-water}\) and \(\beta_{G-land}\). To this we added either a
+single intercept, or random intercepts \(b_s\) for \(n_s = 4\) or
+\(n_s = 16\) as above.
+
+The posterior distributions of the slope parameters \(\beta_{G}\) are
+shown in Figure \ref{fig:Beta_SWI_byS0S04S16_Stor}. This yields
+plausible values, with a positive slope on land and a near-zero slope
+over water, as we know to be correct from the data in Figure
+\ref{fig:HvsG_byWwater_Stor}. The distributions show the values are
+better constrained for \(\beta_{G-land}\) (within a range of
+\(\approx 0.02\)) than for \(\beta_{G-water}\) (range of
+\(\approx 0.04\)), as expected from the greater scatter in the data over
+water in Figure \ref{fig:HvsG_byWwater_Stor}. The values vary depending
+on the number of spatial random effects \(n_s\) which are included
+(i.e.~granularity of the spatial heterogeneity that is recognised). We
+can assess how many it is justified to include on the basis of the
+information criteria in Table \ref{tab:bic_output}. This shows that,
+when the surface type classification is used (i.e. \(n_u > 1\)), BIC is
+larger when \(n_s = 16\) compared to when \(n_s = 4\), so using the
+higher number of spatial regions is not justified. This bears out what
+we saw in Figure x, where parameter estimates in the furthermost
+subquadrants were unreliable. The minimum value of BIC is obtained with
+\(n_u = 5\) and \(n_s = 4\), suggesting that the distinctions between
+surface types in the more detailed classification (not just water versus
+land) are relevant to sensible heat fluxes. BIC values for the cases
+\(n_u = 1, n_s = 16\), \(n_u = 5, n_s = 1\) and \(n_u = 2, n_s = 4\)
+ranked next and were all similar.
+
+We repeat a similar analysis for methane fluxes, where the underlying
+model is much less well-known, although at least a reasonably clear
+temperature response provides a similar basis (Figures
+\ref{fig:Fch4vsT_byVeg_ch} and \ref{fig:Fch4vsT_byWwater_Stor}). Figure
+\ref{fig:Fch4vsT_byVeg_ch} shows that there are at least some distinct
+differences in methane fluxes between the different surface types. The
+semi-wet class has a much lower mean than the graminoid and hummock
+classes, but these latter are rather similar. The data are rather
+variable, and a substantial part of this is point-to-point variability,
+characterised by location but not to any measured covariate. There were
+no chamber measurements in the wet or water surface types.
+
+When the footprint was on the land, ecosystem-scale fluxes were similar
+in magnitude to the mean of fluxes measured in the chambers at a
+corresponding temperature (of the order of 100 nmol m\(^{-2}\)
+s\(^{-1}\) at 10 \(^o\)C, Figure \ref{fig:Fch4vsT_byWwater_Stor}).
+Methane fluxes increase with biological production in the peat,
+producing a clear relationship in the green data points, described by
+the slope \(\beta_{T_{s}-\mathrm{land}}\). The lake temperature is not
+strongly coupled to soil temperature, and lake fluxes are also
+influenced by physical turbulence (Jammet \emph{et al.} , 2017), so there
+is no strong dependence of \(F_{CH_4}\) on \(T_s\) in the dark blue
+points, meaning the slope \(\beta_{T_{w}-\mathrm{water}}\) is close to
+zero.
+
+As for sensible heat, we fit a simple model which includes the most
+important temporal covariates, and assess whether we can discern the
+expected spatial pattern in the residuals. To do this, we set:
+\(n_u = 1\) (i.e.~no distinction between surface types), four temporal
+covariates \(\mathbf{X} = {Ts, Tw, G, v}\), with fixed effect parameters
+for the slopes \(\beta_{T_s}\), \(\beta_{T_w}\), \(\beta_{G}\), and
+\(\beta_{v}\). To this we added either a single intercept, or random
+intercepts \(b_s\) for \(n_s = 4\) or \(n_s = 16\) as above.
+
+Figure \ref{fig:b_Fch4_U1S04_byS_Stor} shows that after removing the
+temporal variation, the residual flux, \(b_{s}\), is higher in the
+all-land quadrants (\(s_{1}, s_{3}\)), and lower in the water quadrants
+(\(s_{2}, s_{4}\)), as expected based on the pattern in Figure
+\ref{fig:Fch4vsT_byWwater_Stor}. The exception is that the mixed
+water/land quadrat \(s=4\) has a lower value than the all-water quadrant
+\(s=2\), though the two distributions largely overlap.
+
+When we use 16 spatial regions in the same procedure, we find that
+parameter estimates remain plausible and well-defined in regions near
+the tower (Figure \ref{fig:b_Fch4_U1S16_byS_Stor}), but are highly
+uncertain and implausible in some other cases (e.g. \(s=2,13,14\)), as
+was the case for sensible heat.
+
+Again, we can use information on the spatial distribution of surface
+types in a more sophisticated analysis to explore the the appropriate
+number of spatial random effect terms to include. Figure
+\ref{fig:Beta_Fch4_byS0S04S16_Stor} shows the effect of including
+\(n_s\) = 1, 4, or 16 random intercepts \(b_s\), when using the same
+\(\mathbf{X}\) variables as describe above, but with \(n_u = 2\). In
+this way, we fit separate \(\beta\) slope parameters for the effects of
+\(T_w\) and \(v\) on fluxes from water, and the effects of \(T_s\) and
+\(G\) on fluxes from land. Figure \ref{fig:Beta_Fch4_byS0S04S16_Stor}
+shows the effect of including \(n_s\) = 1, 4, or 16 random intercepts
+\(b_s\) on the estimates of the fixed-effect parameters. This indicates
+that including the spatial random effects can have a sizeable impact on
+parameter values. Including the random effects can make the values
+higher or lower, but the effect is not straightforwardly predictable -
+e.g.~with \(n_s\) = 4 and =16, the distributions for
+\(\beta_{T_{w-\mathrm{water}}}\) are almost identical, whereas the
+distributions for \(\beta_{G_{\mathrm{land}}}\) are on either side of
+the distribution for \(n_s = 1\).
+
+The information-theoretic criteria give an indication of how many terms
+should be included in the model. As for sensible heat, the BIC minimum
+indicates that \(n_u = 5, n_s = 4\) is the best configuration, with the
+other \(n_u = 5\) combinations ranking second and third. The use of five
+surface types to describe the variability in methane flux is thus
+strongly supported. The related AIC and DIC criteria always produced the
+same rankings (data not shown), but the alternative WAIC in fact
+suggested \(n_u = 5, n_s = 16\) as the best configuration, so the
+results are not completely clear-cut.
+
+We investigated the influence of the prior by analysing two variations:
+using the model fitted to the chamber data as the prior, or using
+``weakly-informative'' priors with mean zero and wide standard
+deviations (Stan Development Team, 2016). For the wet and water surface
+types, there was no chamber data, so default weak priors were used here.
+Distributions of the \(\beta\) temperature coefficient for the five
+surface types are shown in Figure
+\ref{fig:Beta_T_Fch4_U5S01_withPrior_Stor}.
+
+Generally, the red and green curves are not very different, so the prior
+does not have a very strong effect on the results. The posterior moves
+substantially away from the prior in the case of the hummock, and
+graminoid surface types. The priors for these are strongly influenced by
+a small number of high fluxes in the chamber data. These are plausible
+for individual point flux measurements, which often show a lognormal
+distribution, but not plausible for the ecosystem-scale mean which eddy
+covariance measures. The difference is thus partly due to the difference
+in measurement scales, and could be accounted for explicitly in future
+work (e.g.~see Levy \emph{et al.} , 2017).
+
+The uncertainty in a given parameter estimate is characterised by the
+spread of its posterior distribution, and this can be summarised as a
+credibility interval or standard deviation, \(\sigma\), or its
+reciprocal the precision (\(1 / \sigma\)). To examine the level of
+uncertainty in our inference of spatial heterogeneity in residual
+methane flux, Figure \ref{fig:precision_map} shows the plot of the
+precision of our estimates of the spatial random intercept term, \(b_s\)
+(from the model fitted as decribed above, with \(n_u = 2\) and
+\(n_s = 16\)). This gives a quantitative representation of our intuitive
+expectation, that we have higher certainty in flux estimates from
+regions near the flux tower compared with those at a distance. It also
+quantifies the effect of prevailing wind patterns on the extent to which
+different regions are sampled by the footprint. In addition, this
+incorporates the differing degrees of variability in fluxes from
+different regions, and the extent to which these are explained by
+temporal or spatial covariates.

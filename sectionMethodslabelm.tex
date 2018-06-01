@@ -1,0 +1,150 @@
+\section{Methods}\label{methods}
+
+\subsection{Site Description}\label{site-description}
+
+Stordalen mire is a subarctic peatland located near Abisko, Northern
+Sweden (68\(^{\circ}\) 20' N, 19\(^{\circ}\) 03' E). At a broad level,
+the landscape is heterogeneouis, comprising freshwater lakes, smaller
+pools, and non-inundated bog with a water table below the surface
+(Figure \ref{fig:fp_on_map_Stordalen} and \ref{fig:r_water_land}). At a
+finer level, the terrestrial vegetation types can be classified into:
+(i) moss hummocks containing shrubs, (ii) semiwet (ombro-minerotrophic)
+bog with a water table below the surface, (iii) wet (ombrotrophic) bog
+pools with a water table at or near the surface, and (iv)
+graminoid-dominated bog with a water table above the peat surface
+(Malmer \emph{et al.} , 2005, Johansson \emph{et al.} (2006)). The
+distribution of these vegetation types has been mapped using remote
+sensing (Giljum, 2014)(Figure \ref{fig:r_u5}).
+
+\subsection{Chamber flux measurements}\label{chamber-flux-measurements}
+
+Static chamber measurements of CH\(_4\) flux were made in June, August
+and September 2013. 46 collars were located across the mire, clustered
+in five locations accessible from boardwalk. Circular PVC collars (40 cm
+diameter), fitted with a flange, were inserted to a depth of 5 cm into
+the ground prior to the start of measurements and remained in the ground
+for the duration of the study. Cylindrical PVC chambers (40 cm diameter,
+20 cm height) with a matching flange, were sealed on the collars for the
+duration of each flux measurement (45 minutes). Each chamber lid had a
+vent (pressure compensation plug; Mouser Electronics, London, UK) to
+compensate for pressure changes whilst minimising diffusion losses (Xu
+\emph{et al.} , 2006). During each flux measurement, gas samples were
+extracted from the chamber headspace at 5, 15, 30 and 45 minutes via a
+polypropylene syringe and a three-way stopcock. Samples were transferred
+to 20-ml vials fitted with chlorobutyl rubber septa. The samples and
+three sets of four certified standard concentrations were analysed on a
+gas chromatograph (HP5890 Series II, Hewlett Packard, Agilent
+Technologies, Stockport, UK) with a flame ionization detector. The limit
+of detection was 0.07 ppm CH\(_4\). Peak integration was carried out
+with Clarity chromatography software (DataApex, Prague, Czech Republic).
+The flux was calculated from the change in mixing ratio within the
+chamber headspace against time:
+
+\begin{equation}
+ F = \frac{\mathrm{d}C}{\mathrm{d}t_0} \cdot \frac{\rho V}{A}
+
+\end{equation}
+
+where \(F\) is the gas flux in \(\mathrm{nmol\,m^{-2}\,s^{-1}}\),
+\(\mathrm{d}C/\mathrm{d}t_0\) is the initial rate of change in mixing
+ratio with time in \(\mathrm{nmol\,mol^{-1}\,s^{-1}}\), \(\rho\) is the
+density of air in \(\mathrm{mol\,m^{-3}}\), \(V\) is the volume of the
+chamber in \(\mathrm{m^3}\) and \(A\) is the ground area enclosed by the
+chamber in \(\mathrm{m^2}\). \(\mathrm{d}C/\mathrm{d}t_0\) was estimated
+by linear and nonlinear regression as described in Levy et al. (2011).
+
+\subsection{Eddy covariance flux
+measurements}\label{eddy-covariance-flux-measurements}
+
+Fluxes of CH\(_4\), CO\(_2\), H\(_2\)O and sensible heat were monitored
+nearly continuously with an eddy covariance system located at the shore
+of Villasjon (Fig. 1), as described in full by (Jammet \emph{et al.} ,
+2017). The system comprised a 3-D sonic anemometer (R3-50, Gill
+Instruments Ltd.), an open-path infrared gas analyser (IRGA) for
+CO\(_2\) and H\(_2\)O (LI7500, LICOR Environment, NE, USA) and a
+closed-path analyser for CH\(_4\) (FGGA, Los Gatos Research, CA, USA),
+logged on a data logger (CR1000, Campbell Scientific, Inc., UT, USA).
+The sonic and IRGA were mounted on a mast at 2.5 m, with a sample inlet
+line to the FGGA adjacent to these. Fluxes were calculated using the
+EddyPro version 5.2 open-source software (hosted by LICOR Environment,
+USA). Processing of the 10-Hz raw data followed standard eddy covariance
+procedures (Aubinet \emph{et al.} , 2012, Lee \emph{et al.} (2006)).
+Fluxes were rejected for some time periods on the basis of quality
+checks, including the number of spikes, skewness and kurtosis,
+stationarity, turbulence (low u* values) and implausible time lags
+(Papale \emph{et al.} , 2006). Although Jammet et al. (2017) imputed
+missing values, only observed fluxes were analysed here. For every time
+period with a valid flux measurement, we calculated the flux footprint
+\(\mathbf{W}\) over a 200 x 200 m domain around the tower at 2-m
+resolution. For simplicity, we use the commonly-used simple analytical
+model of Kormann and Meixner (2001), but acknowledge that more
+comprehensive models are available (Kljun \emph{et al.} , 2015).
+
+\subsection{Statistical analysis}\label{statistical-analysis}
+
+We consider two examples to demonstrate the application of the approach
+to the Stordalen flux data. Firstly, we analyse the response of sensible
+heat to incoming solar radiation. In this case, we have a clearly
+defined spatial pattern, which we know in advance, because land and
+water surfaces behave quite differently for clear physical reasons. We
+consider only two surface type in this case (\(\mathbf{u}\) = \{water,
+land\}). We use this to test the approach to detecting spatial
+heterogeneity, where we have a good knowledge of the true pattern
+\emph{a priori} . Secondly, we analyse the more complex case of methane
+flux, where we define five different surface types (\(\mathbf{u}\) =
+\{hummock, semi-wet, wet, graminoid, water\}), all with potentially
+different responses of CH\(_4\) flux to multiple temporal covariates. In
+both cases, we can sub-divide the domain, with increasing granularity,
+into 4, 16 or 64 spatial regions (the cardinal quadrants centred on the
+tower, and further repeated subdivisions of these).
+
+Applying Equations \ref{eq:sWtMean} and \ref{eq:uWtMean} provides the
+footprint weightings for each defined spatial region \(\mathbf{W}_{s}\)
+and each surface type \(\mathbf{W}_{u}\). Equation \ref{eq:pred_Fbarhat}
+gives the prediction for what we expect to observe by eddy covariance at
+time \(t\), given a calculated footprint \(\mathbf{W}\), a known
+distribution of surface types \(\mathbf{U}\), a pre-defined matrix of
+spatial regions \(\mathbf{S}\), the autoregressive term \(\phi\), and
+the parameter vectors for fixed and random effects,
+\(\boldsymbol{\beta}\) and \(\mathbf{b}\). The likelihood of a series of
+\(n_t\) observations of \(\widehat{\bar{F_t}}\) arising from normal
+distributions with means determined by Equation \ref{eq:pred_Fbarhat}
+is:
+
+\begin{equation}
+ \mathcal{L} = \prod_{t=1}^{n_t} \frac{1}{\sigma_{t}^\mathrm{obs} \sqrt{2\pi}} \mathrm{exp}(-(\widehat{\bar{F_t}}^\mathrm{obs} - \widehat{\bar{F_t}}^\mathrm{pred})^2/2 \sigma_{t}^{\mathrm{obs}^2})
+
+\end{equation}
+
+where \(\sigma_{t}^{\mathrm{obs}}\) is the uncertainty in the observed
+(eddy covariance) flux at each time point. The posterior distribution
+for \(\beta\), \(b\) and the predicted flux were estimated using
+Hamiltonian MCMC, using the algorithm implemented in the R package
+\(\texttt{rstanarm}\) (Stan Development Team, 2016, Betancourt (2017)).
+Initial fits were obtained by the restricted maximum likelihood method
+using the \(\texttt{lme4}\) package in R (Bates \emph{et al.} , 2015).
+
+We based the choice of independent variables to use in modelling the
+CH\(_4\) flux on the earlier analysis of (Jammet \emph{et al.} , 2017).
+Although many of the variables are strongly correlated, this suggested
+that CH\(_4\) fluxes from the lake surface were controlled by water
+temperature (as a control on biological production) and turbulence (as a
+physical mechanism driving the flux at the water surface). CH\(_4\)
+fluxes from the land surface were controlled by soil temperature, with
+additional effects of solar radiation and humidity (as drivers of
+stomatal opening and transport through plant pathways). The chamber flux
+data were used to establish the prior distribution for model parameters.
+The chambers were allocated to the same set of surface types, and the
+same model was fitted to the chamber flux data for each of these groups,
+in the same way as for the eddy covariance data. The posterior
+distribtion of parameters established in this way was then used as the
+prior distribution in the analysis of the eddy covariance data. The
+uncertainty in each half-hourly flux observation was estimated using the
+method of Finkelstein and Sims (2001). The effect of including different
+terms in the model fitted, and the granularity of the grid on which
+spatial heterogeneity was resolved, was assessed using common model
+selection criteria: AIC, BIC, and DIC. To allow upscaling of
+measurements to a wider region, the model fitted to observations of
+\(\widehat{\bar{F_t}}\) was used to make explicit predictions of
+\(\bar{F_t}\) over a larger spatial domain, where the surface type
+classification was available (Giljum, 2014).
