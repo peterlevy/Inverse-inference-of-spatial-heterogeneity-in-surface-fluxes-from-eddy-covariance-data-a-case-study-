@@ -8,7 +8,7 @@ grid:
   rows: 1
   columns: 1
   grid_elements:
-  - path: figures/Beta_SWI_byS04_Stor/Beta_SWI_U1S16_byS_Stor.png
+  - path: figures/Beta_SWI_byS04_Stor/Beta_SWI_U1S04_byS_Stor.png
     type: static
     from:
     - 1
@@ -17,4 +17,4 @@ grid:
     - 1
     - 1
     folder_url: "/users/236765/articles/306641/master/folder/figures/Beta_SWI_byS04_Stor"
-    url: "/users/236765/articles/306641/master/file/figures/Beta_SWI_byS04_Stor/Beta_SWI_U1S16_byS_Stor.png"
+    url: "/users/236765/articles/306641/master/file/figures/Beta_SWI_byS04_Stor/Beta_SWI_U1S04_byS_Stor.png"
