@@ -24,6 +24,5 @@ figures/b_Fch4_U1S16_byS_Stor
 figures/Beta_Fch4_byS0S04S16_Stor
 figures/Beta_T_Fch4_U5S01_withPrior_Stor
 figures/precision_map
-figures/precision_map1
 untitled3.tex
 sectionReferenceslab.tex
