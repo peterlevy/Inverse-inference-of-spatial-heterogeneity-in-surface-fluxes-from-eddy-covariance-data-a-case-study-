@@ -8,7 +8,7 @@ grid:
   rows: 1
   columns: 1
   grid_elements:
-  - path: figures/fp_on_map_Stordalen/default_figure.png
+  - path: figures/fp_on_map_Stordalen/fp_on_map_Stordalen.png
     type: static
     from:
     - 1
@@ -16,5 +16,5 @@ grid:
     to:
     - 1
     - 1
-    url: "/users/236765/articles/306641/master/file/figures/fp_on_map_Stordalen/default_figure.png"
     folder_url: "/users/236765/articles/306641/master/folder/figures/fp_on_map_Stordalen"
+    url: "/users/236765/articles/306641/master/file/figures/fp_on_map_Stordalen/fp_on_map_Stordalen.png"
