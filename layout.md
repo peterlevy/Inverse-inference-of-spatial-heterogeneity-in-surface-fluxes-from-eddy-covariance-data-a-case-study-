@@ -7,7 +7,6 @@ tab_bic_output.tex
 pagebreak4.tex
 untitled2.tex
 figures/fp_on_map_Stordalen
-figures/r_u51
 figures/r_water_land
 figures/r_u5
 figures/HvsG_byWwater_Stor
