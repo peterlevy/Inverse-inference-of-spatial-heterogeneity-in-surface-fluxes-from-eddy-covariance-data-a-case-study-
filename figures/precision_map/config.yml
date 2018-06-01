@@ -8,7 +8,7 @@ grid:
   rows: 1
   columns: 1
   grid_elements:
-  - path: figures/precision_map/default_figure.png
+  - path: figures/precision_map/precision_map.png
     type: static
     from:
     - 1
@@ -16,5 +16,5 @@ grid:
     to:
     - 1
     - 1
-    url: "/users/236765/articles/306641/master/file/figures/precision_map/default_figure.png"
     folder_url: "/users/236765/articles/306641/master/folder/figures/precision_map"
+    url: "/users/236765/articles/306641/master/file/figures/precision_map/precision_map.png"
