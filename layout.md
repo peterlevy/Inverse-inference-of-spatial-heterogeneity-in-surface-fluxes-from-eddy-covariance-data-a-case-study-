@@ -10,7 +10,6 @@ figures/fp_on_map_Stordalen
 figures/r_u51
 figures/fp_on_map_Stordalen1
 figures/r_water_land
-figures/r_water_land1
 figures/r_u5
 figures/HvsG_byWwater_Stor
 figures/Beta_SWI_byS04_Stor
