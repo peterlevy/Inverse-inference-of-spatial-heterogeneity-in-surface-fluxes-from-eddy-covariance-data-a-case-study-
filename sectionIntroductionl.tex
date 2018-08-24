@@ -152,13 +152,11 @@ introducing a first-order autoregressive error term. We can now add in
 these terms and estimate the measured flux at time \(t\) to be:
 
 \begin{align}   \label{eq:pred_Fbarhat}
-
   \widehat{\bar{F_t}} = \sum_{u = 1}^{n_u} \boldsymbol{\beta}_u \mathbf{X}_t W_{tu} 
                        &+ \sum_{s = 1}^{n_s} \mathbf{b}_s \mathbf{Z}_{ts} W_{ts} 
                        + \phi_{1}F_{t-1} + \epsilon_{t} \\
   b_s & \sim N(0, \Psi), \\
   \epsilon_{ts} & \sim N(0, \sigma^2).
-\end{split}
 \end{align}
 
 \(\boldsymbol{\beta}_u\) is the vector of coefficients that are specific
