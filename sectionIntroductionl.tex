@@ -3,50 +3,153 @@
 \subsection{A framework for accounting for spatial heterogeneity in flux
 measurements}\label{a-framework-for-accounting-for-spatial-heterogeneity-in-flux-measurements}
 
-Eddy covariance has become a widely used technique for measuring surface-atmosphere exchange of energy and scalars [@Baldocchi2001]. 
-The technique has advantages in that it integrates over a relatively large area (compared to chamber methods), and can run near-continuously over long time spans. It can thereby provide the best available data with which to estimate the magnitude and controls on ecosystem-scale trace gas and energy fluxes. An implicit assumption in the method is horizontal homogeneity in the wind field and surface flux [@Aubinet2012]. Horizontal heterogeneity in the wind field is associated with problems of flux divergence, and the misinterpretation of advective fluxes as part of the vertical eddy flux [@Aubinet2002, @Finnigan2003]. Horizontal heterogeneity in the surface flux causes difficulties in interpretation and raises questions such as: what area do our observations actually represent? Given the area we want to make inferences about, how representative are our observed fluxes? [@Kumar2016].  Our aim here was to address these questions, using statistical modelling and footprint analysis, applied to a case study of methane fluxes in a subarctic mire [@Schaepman-Strub2009].
+Eddy covariance has become a widely used technique for measuring
+surface-atmosphere exchange of energy and scalars (Baldocchi \emph{et
+al.}, 2001). The technique has advantages in that it integrates over a
+relatively large area (compared to chamber methods), and can run
+near-continuously over long time spans. It can thereby provide the best
+available data with which to estimate the magnitude and controls on
+ecosystem-scale trace gas and energy fluxes. An implicit assumption in
+the method is horizontal homogeneity in the wind field and surface flux
+(Aubinet \emph{et al.}, 2012). Horizontal heterogeneity in the wind
+field is associated with problems of flux divergence, and the
+misinterpretation of advective fluxes as part of the vertical eddy flux
+(Aubinet \emph{et al.}, 2002, Finnigan \emph{et al.} (2003)). Horizontal
+heterogeneity in the surface flux causes difficulties in interpretation
+and raises questions such as: what area do our observations actually
+represent? Given the area we want to make inferences about, how
+representative are our observed fluxes? (Kumar \emph{et al.}, 2016). Our
+aim here was to address these questions, using statistical modelling and
+footprint analysis, applied to a case study of methane fluxes in a
+subarctic mire (Schaepman-Strub \emph{et al.}, 2009).
 
-In previous work, the simplest and most common approach to dealing with spatial heterogeneity has been to define sectors in the wind rose based on prior knowledge, and treat these as independent sub-sets of the data. For example, [@Jones2016] located an eddy covariance tower on a boundary between two fields, and allocated observations to data sets for either the north field or the south field, depending on the mean wind vector for each half-hour. In a case study which we examine further here, [@Jammet2017] used an eddy covariance tower located at the edge of a lake in a subarctic mire ecosystem (Figure \ref{fig:fp_on_map_Stordalen}), and allocated observations to data sets for the lake or mire, depending on the mean wind vector for each half-hour. 
+In previous work, the simplest and most common approach to dealing with
+spatial heterogeneity has been to define sectors in the wind rose based
+on prior knowledge, and treat these as independent sub-sets of the data.
+For example, (Jones \emph{et al.}, 2016) located an eddy covariance
+tower on a boundary between two fields, and allocated observations to
+data sets for either the north field or the south field, depending on
+the mean wind vector for each half-hour. In a case study which we
+examine further here, (Jammet \emph{et al.}, 2017) used an eddy
+covariance tower located at the edge of a lake in a subarctic mire
+ecosystem (Figure \ref{fig:fp_on_map_Stordalen}), and allocated
+observations to data sets for the lake or mire, depending on the mean
+wind vector for each half-hour.
 
-Rather than simply considering the azimuth angle of the mean wind vector, a more advanced step is to consider the way in which eddy covariance measurements are influenced by the so-called "flux footprint" [@Schuepp1990, @Schmid1990, @Leclerc2014]. This quantifies the area upwind of the tower which has contributed to the measured flux in a given time period, governed by wind speed, direction, turbulence characteristics and atmospheric stability. The footprint defines the relative contribution of each element of the surface area to the measured vertical flux. Mathematically, it is fundamentally defined by the advection-diffusion equation. Models of the footprint have used analytical approximations to the advection/diffusion equation (based on K-theory and power-law approximations of the wind and diffusivity profles)[@Horst1992], stochastic Lagrangian approaches, or large-eddy simulation. For computational reasons, the first of these is the most common approach.
+Rather than simply considering the azimuth angle of the mean wind
+vector, a more advanced step is to consider the way in which eddy
+covariance measurements are influenced by the so-called ``flux
+footprint'' (Schuepp \emph{et al.}, 1990, Schmid \& Oke (1990), Leclerc
+\& Foken (2014)). This quantifies the area upwind of the tower which has
+contributed to the measured flux in a given time period, governed by
+wind speed, direction, turbulence characteristics and atmospheric
+stability. The footprint defines the relative contribution of each
+element of the surface area to the measured vertical flux.
+Mathematically, it is fundamentally defined by the advection-diffusion
+equation. Models of the footprint have used analytical approximations to
+the advection/diffusion equation (based on K-theory and power-law
+approximations of the wind and diffusivity profles)(Horst \& Weil,
+1992), stochastic Lagrangian approaches, or large-eddy simulation. For
+computational reasons, the first of these is the most common approach.
 
-The footprint acts as a weighting function, such that some areas contribute strongly to the measured flux, and others not at all (Figure \ref{fig:fp_on_map_Stordalen}). In mathematical terms, the mean flux $F$ of a scalar over a landscape represented by a discretised gridded domain with dimensions $n_x$ by $n_y$ at time $t$ is given by:
+The footprint acts as a weighting function, such that some areas
+contribute strongly to the measured flux, and others not at all (Figure
+\ref{fig:fp_on_map_Stordalen}). In mathematical terms, the mean flux
+\(F\) of a scalar over a landscape represented by a discretised gridded
+domain with dimensions \(n_x\) by \(n_y\) at time \(t\) is given by:
+
 \begin{align}   \label{eq:simpleMean}
   \bar{F_t} = \sum_{x = 1}^{n_x} \sum_{y = 1}^{n_y} F_{xyt} \frac{1}{n_x n_y}
 \end{align}
-Eddy covariance effectively measures a weighted mean, where the footprint provides the set of weights, $\mathbf{W}$, to give:
+
+Eddy covariance effectively measures a weighted mean, where the
+footprint provides the set of weights, \(\mathbf{W}\), to give:
+
 \begin{align}   \label{eq:weightMean}
   \widehat{\bar{F_t}} = \sum_{x = 1}^{n_x} \sum_{y = 1}^{n_y} F_{xyt} W_{xyt}
 \end{align}
-where we use the $\widehat{\mathrm{hat}}$-symbol to indicate that this is an estimator, not $\bar{F_t}$ itself. The weights $\mathbf{W} = \{W_{xy}\}$ sum to unity at each time interval.  We typically have a large number of measurements over time ($n_t$, potentially all the half-hourly flux measurements over a number of years). If the number of samples is large, heterogeneity is small, and the footprint coverage approximates the domain of interest, we can assume $\widehat{\bar{F}}$ is a reasonable approximation of the true time-averaged mean flux for the whole domain, i.e. $\widehat{\bar{F}} \approx \bar{F}$. In many circumstances, this may not be the case. To extract the complete information from the data about spatial heterogeneity of the surface flux, we would wish to know the mean flux at each location, $\bar{F_{xy}}$. However, this is a nonlinear inverse problem which is very under-constrained, with no analytical solution. Our goal here is to find the appropriate balance in identifying and accounting for spatial heterogeneity as far as possible, whilst keeping the model reasonably simple and identifiable.
 
-Fluxes measured by eddy covariance are typically analysed as a time series, where the temporal variation in $F$ is related to variation in independent temporal covariates $X$, such as solar radiation, air temperature and soil moisture, measured at a single point near the flux tower.  Ignoring footprint sampling issues, and autocorelation, this is often approached using a multiple regression model with a vector of coefficients $\boldsymbol{\beta}$ and a residual error term $\epsilon$:
+where we use the \(\widehat{\mathrm{hat}}\)-symbol to indicate that this
+is an estimator, not \(\bar{F_t}\) itself. The weights
+\(\mathbf{W} = \{W_{xy}\}\) sum to unity at each time interval. We
+typically have a large number of measurements over time (\(n_t\),
+potentially all the half-hourly flux measurements over a number of
+years). If the number of samples is large, heterogeneity is small, and
+the footprint coverage approximates the domain of interest, we can
+assume \(\widehat{\bar{F}}\) is a reasonable approximation of the true
+time-averaged mean flux for the whole domain, i.e.
+\(\widehat{\bar{F}} \approx \bar{F}\). In many circumstances, this may
+not be the case. To extract the complete information from the data about
+spatial heterogeneity of the surface flux, we would wish to know the
+mean flux at each location, \(\bar{F_{xy}}\). However, this is a
+nonlinear inverse problem which is very under-constrained, with no
+analytical solution. Our goal here is to find the appropriate balance in
+identifying and accounting for spatial heterogeneity as far as possible,
+whilst keeping the model reasonably simple and identifiable.
+
+Fluxes measured by eddy covariance are typically analysed as a time
+series, where the temporal variation in \(F\) is related to variation in
+independent temporal covariates \(X\), such as solar radiation, air
+temperature and soil moisture, measured at a single point near the flux
+tower. Ignoring footprint sampling issues, and autocorelation, this is
+often approached using a multiple regression model with a vector of
+coefficients \(\boldsymbol{\beta}\) and a residual error term
+\(\epsilon\):
 
 \begin{align}   \label{eq:timeVarn}
 %% replacing \beta with \upbeta from upgreek works in pdf, not html
   \bar{F_t} = \boldsymbol{\beta} \mathbf{X}_t + \epsilon_{t}
 \end{align}
 
-In the presence of spatial heterogeneity in $F$ around the tower, this approach is incomplete, and additional terms should be considered in the analysis. 
-To do this, we can use the approach variously called "hierarchical", "mixed-effects" or "multi-level" modelling in the frequentist [@Laird1982, @Pinheiro2006, @Bates2015] or Bayesian paradigms [@StanDevelopmentTeam2016]. 
-This is a development of linear regression, where the effects of a grouping structure in the data are explicitly represented and accounted for. There is now a large literature on the application of hierachical modelling to agricultural and ecological science, and we refer the reader to this [@Peek2002, @Bolker2009, ], Zuur, Bates). 
-Models that ignore (spatial) grouping structures in the data tend to underfit or overfit [@Gelman2013]. 
-Hierachical modeling allows parameters to vary by group at lower levels of the hierarchy while estimating common parameters at higher levels, often referred to as ``borrowing strength''.
+In the presence of spatial heterogeneity in \(F\) around the tower, this
+approach is incomplete, and additional terms should be considered in the
+analysis. To do this, we can use the approach variously called
+``hierarchical'', ``mixed-effects'' or ``multi-level'' modelling in the
+frequentist (Laird \& Ware, 1982, Pinheiro \& Bates (2006), Bates
+\emph{et al.} (2015)) or Bayesian paradigms (Stan Development Team,
+2016). This is a development of linear regression, where the effects of
+a grouping structure in the data are explicitly represented and
+accounted for. There is now a large literature on the application of
+hierachical modelling to agricultural and ecological science, and we
+refer the reader to this (Peek \emph{et al.}, 2002, Bolker \emph{et al.}
+(2009),), Zuur, Bates). Models that ignore (spatial) grouping structures
+in the data tend to underfit or overfit (Gelman \emph{et al.}, 2013).
+Hierachical modeling allows parameters to vary by group at lower levels
+of the hierarchy while estimating common parameters at higher levels,
+often referred to as ``borrowing strength''.
 
-In the case of flux tower data, there are commonly two kinds of grouping terms to consider. 
-Firstly, we can often classify the landscape as a set of discrete surface types forming a heterogeneous matrix, $\mathbf{U} = \{U_{xy}\}$. In our subarctic mire example, the surface types could simply be water or land (Figure \ref{fig:r_water_land}), or the more detailed set $\mathbf{u}$ = {hummock, semi-wet, wet, graminoid, water} (Figure \ref{fig:r_u5}). The footprint weighting for each surface type $u$ at time $t$ is:
+In the case of flux tower data, there are commonly two kinds of grouping
+terms to consider. Firstly, we can often classify the landscape as a set
+of discrete surface types forming a heterogeneous matrix,
+\(\mathbf{U} = \{U_{xy}\}\). In our subarctic mire example, the surface
+types could simply be water or land (Figure \ref{fig:r_water_land}), or
+the more detailed set \(\mathbf{u}\) = \{hummock, semi-wet, wet,
+graminoid, water\} (Figure \ref{fig:r_u5}). The footprint weighting for
+each surface type \(u\) at time \(t\) is:
+
 \begin{align}   \label{eq:uWtMean}
   W_{tu} = \sum_{x = 1}^{n_x} \sum_{y = 1}^{n_y}  \sum_{u = 1}^{n_u} [U_{xy} = u] W_{xyt}.
 \end{align}
 
-Secondly, we can consider the domain around the tower as sub-divided into a number of spatial regions, $s$ (e.g. the squares in Figure \ref{fig:fp_on_map_Stordalen}), where the local parameters will differ from the domain average, after accounting for the distribution of surface types. This represents spatial variability which is not accounted for by any other covariate. To estimate this spatial grouping term, we require the footprint weighting for each spatial region $s$ at time $t$, given by:
+Secondly, we can consider the domain around the tower as sub-divided
+into a number of spatial regions, \(s\) (e.g.~the squares in Figure
+\ref{fig:fp_on_map_Stordalen}), where the local parameters will differ
+from the domain average, after accounting for the distribution of
+surface types. This represents spatial variability which is not
+accounted for by any other covariate. To estimate this spatial grouping
+term, we require the footprint weighting for each spatial region \(s\)
+at time \(t\), given by:
 
 \begin{align}   \label{eq:sWtMean}
   W_{ts} = \sum_{x = 1}^{n_x} \sum_{y = 1}^{n_y}  \sum_{s = 1}^{n_s} [S_{xy} = s] W_{xyt}
 \end{align}
 
-where $\mathbf{S}$ is the matrix of $n_s$ spatial regions and the square brackets are Iverson notation, evaluating to 1 where true and zero otherwise. Additionally, it is common that the residuals $\epsilon_{t}$ are autocorrelated, and we can account for this by introducing a first-order autoregressive error term.
-We can now add in these terms and estimate the measured flux at time $t$ to be: 
+where \(\mathbf{S}\) is the matrix of \(n_s\) spatial regions and the
+square brackets are Iverson notation, evaluating to 1 where true and
+zero otherwise. Additionally, it is common that the residuals
+\(\epsilon_{t}\) are autocorrelated, and we can account for this by
+introducing a first-order autoregressive error term. We can now add in
+these terms and estimate the measured flux at time \(t\) to be:
 
 \begin{align}   \label{eq:pred_Fbarhat}
 \begin{split}
@@ -57,32 +160,99 @@ We can now add in these terms and estimate the measured flux at time $t$ to be:
   \epsilon_{ts} & \sim N(0, \sigma^2).
 \end{split}
 \end{align}
- 
-$\boldsymbol{\beta}_u$ is the vector of coefficients that are specific to surface type $u$ (and common to all instances of surface type $u$, wherever they occur).
-$\mathbf{Z}_{t}$ is a subset of the temporal covariates $\mathbf{X}_{t}$ with responses that vary among spatial regions,
- and 
-$\mathbf{b}_s$ is the vector of the local deviations in their coefficients in spatial region, $s$.
 
-That is, we fit a model which describes the global response of the flux to independent variables in different surface types ("fixed-effects" in the mixed-effect modelling parlance), but allow the flux to be consistently higher or lower in each spatial region through the ("random effect") term $\mathbf{b}$. 
-The spatial deviations $b_s$ are assumed to be independently drawn from a normal distribution with mean zero and variance $\Psi$, and in the Bayesian approach, it is necessary to state prior beliefs about $\Psi$, in addition to $\boldsymbol{\beta}$, and $\epsilon$.
+\(\boldsymbol{\beta}_u\) is the vector of coefficients that are specific
+to surface type \(u\) (and common to all instances of surface type
+\(u\), wherever they occur). \(\mathbf{Z}_{t}\) is a subset of the
+temporal covariates \(\mathbf{X}_{t}\) with responses that vary among
+spatial regions, and \(\mathbf{b}_s\) is the vector of the local
+deviations in their coefficients in spatial region, \(s\).
 
+That is, we fit a model which describes the global response of the flux
+to independent variables in different surface types (``fixed-effects''
+in the mixed-effect modelling parlance), but allow the flux to be
+consistently higher or lower in each spatial region through the
+(``random effect'') term \(\mathbf{b}\). The spatial deviations \(b_s\)
+are assumed to be independently drawn from a normal distribution with
+mean zero and variance \(\Psi\), and in the Bayesian approach, it is
+necessary to state prior beliefs about \(\Psi\), in addition to
+\(\boldsymbol{\beta}\), and \(\epsilon\).
 
-The model fitted to observations of $\widehat{\bar{F_t}}$ can be used to make explicit predictions of $\bar{F_t}$ over a wider domain, if the area covered by each surface type is available (and any other spatial covariates). In this case, the spatial terms, being random effects with mean zero, drop out to leave our global model for the predicted flux as:
+The model fitted to observations of \(\widehat{\bar{F_t}}\) can be used
+to make explicit predictions of \(\bar{F_t}\) over a wider domain, if
+the area covered by each surface type is available (and any other
+spatial covariates). In this case, the spatial terms, being random
+effects with mean zero, drop out to leave our global model for the
+predicted flux as:
 
 \begin{align}   \label{eq:pred_Fbar}
   \bar{F_t} &= \sum_{u = 1}^{n_u} \boldsymbol{\beta}_u \mathbf{X}_t A_{u} \frac{1}{n_x n_y l^2}.
 \end{align}
 
-where $A_{u}$ denotes the area occupied by surface type $u$ and $l^2$ is the area of a single grid square.
+where \(A_{u}\) denotes the area occupied by surface type \(u\) and
+\(l^2\) is the area of a single grid square.
 
-Given that the different surface types may respond to different independent variables, we can specify different fixed-effect terms for each.  For example, fluxes from water may respond to water temperature, whereas fluxes from land may respond to soil temperature. The parameters of mixed-effect models are typically estimated by maximum likelihood estimation. Here we use Bayesian methods instead, using Hamiltonian Markov chain Monte Carlo sampling, which provides a computationally efficient means of estimating the posterior distribution of the parameters [@Betancourt2017]. This allows us to combine data from flux chambers within the footprint as informative priors, and provides a robust means of estimating uncertainty on the parameters and predictions.
+Given that the different surface types may respond to different
+independent variables, we can specify different fixed-effect terms for
+each. For example, fluxes from water may respond to water temperature,
+whereas fluxes from land may respond to soil temperature. The parameters
+of mixed-effect models are typically estimated by maximum likelihood
+estimation. Here we use Bayesian methods instead, using Hamiltonian
+Markov chain Monte Carlo sampling, which provides a computationally
+efficient means of estimating the posterior distribution of the
+parameters (Betancourt, 2017). This allows us to combine data from flux
+chambers within the footprint as informative priors, and provides a
+robust means of estimating uncertainty on the parameters and
+predictions.
 
-## Case study: methane fluxes in a subarctic wetland
-We apply the approach outlined above to a case study of methane fluxes in a subarctic wetland [@Jammet2017]. Methane (CH$_4$) is an important greenhouse gas, and has other damaging effects related to stratospheric ozone, aerosols and water vapour [@Myhre2013]. The recent increase in global atmospheric CH$_4$ concentration has been attributed to a rise in emissions from natural wetlands, as well as fossil fuel use [@Kirschke2013]. Boreal and arctic wetlands comprise around 50 % of the global wetland area [@Lehner2004], and have experienced a temperature increase of almost double the global rate [@IPCC2013]. If this has has the effect of promoting arctic CH$_4$ emissions, there is the potential for a positive feedback on global warming. The magnitude and controls on arctic CH$_4$ fluxes remain highly uncertain [@Kirschke2013], largely due to the heterogeneous nature of the ecosystems. Based on field studies using static chamber methods (Matson 2000), CH$_4$ fluxes are known to be influenced by factors such as soil temperature, water table height, soil moisture, active layer thaw depth and vegetation type [@Zona2009, @Sturtevant2012, @Levy2012, @Davidson2016]. We need to understand these responses if we are to correctly predict the effects of future climate change. However, extrapolating to larger scales from these point measurements is difficult, given the small scale of the measurements and the extent of the spatial heterogeneity [@vanOijen2017]. Using the modelling approach described above applied to a subarctic ecosystem where there are clear differences in surface characteristics within the landscape, we demonstrate the inference of spatial heterogeneity in CH$_4$ flux. Our aims here were to:
- 
-* quantify and account for the spatial heterogeneity in CH$_4$ flux around the tower
-* combine information from flux chamber and eddy covariance methods in a coherent way
-* describe the response of CH$_4$ fluxes to environmental variables, accounting for spatial variability  
-* quantify the uncertainty in upscaling eddy covariance measurements to a wider region
+\subsection{Case study: methane fluxes in a subarctic
+wetland}\label{case-study-methane-fluxes-in-a-subarctic-wetland}
 
-With this case study, we aimed to show that the approach aids the interpretation of eddy covariance measurements, and maximises the information content which can be retrieved from the data.
+We apply the approach outlined above to a case study of methane fluxes
+in a subarctic wetland (Jammet \emph{et al.}, 2017). Methane (CH\(_4\))
+is an important greenhouse gas, and has other damaging effects related
+to stratospheric ozone, aerosols and water vapour (Myhre \emph{et al.},
+2013). The recent increase in global atmospheric CH\(_4\) concentration
+has been attributed to a rise in emissions from natural wetlands, as
+well as fossil fuel use (Kirschke \emph{et al.}, 2013). Boreal and
+arctic wetlands comprise around 50 \% of the global wetland area (Lehner
+\& Döll, 2004), and have experienced a temperature increase of almost
+double the global rate (IPCC, 2013). If this has has the effect of
+promoting arctic CH\(_4\) emissions, there is the potential for a
+positive feedback on global warming. The magnitude and controls on
+arctic CH\(_4\) fluxes remain highly uncertain (Kirschke \emph{et al.},
+2013), largely due to the heterogeneous nature of the ecosystems. Based
+on field studies using static chamber methods (Matson 2000), CH\(_4\)
+fluxes are known to be influenced by factors such as soil temperature,
+water table height, soil moisture, active layer thaw depth and
+vegetation type (Zona \emph{et al.}, 2009, Sturtevant \emph{et al.}
+(2012), Levy \emph{et al.} (2012), Davidson \emph{et al.} (2016)). We
+need to understand these responses if we are to correctly predict the
+effects of future climate change. However, extrapolating to larger
+scales from these point measurements is difficult, given the small scale
+of the measurements and the extent of the spatial heterogeneity (van
+Oijen \emph{et al.}, 2017). Using the modelling approach described above
+applied to a subarctic ecosystem where there are clear differences in
+surface characteristics within the landscape, we demonstrate the
+inference of spatial heterogeneity in CH\(_4\) flux. Our aims here were
+to:
+
+\begin{itemize}
+\tightlist
+\item
+  quantify and account for the spatial heterogeneity in CH\(_4\) flux
+  around the tower
+\item
+  combine information from flux chamber and eddy covariance methods in a
+  coherent way
+\item
+  describe the response of CH\(_4\) fluxes to environmental variables,
+  accounting for spatial variability\\
+\item
+  quantify the uncertainty in upscaling eddy covariance measurements to
+  a wider region
+\end{itemize}
+
+With this case study, we aimed to show that the approach aids the
+interpretation of eddy covariance measurements, and maximises the
+information content which can be retrieved from the data.
