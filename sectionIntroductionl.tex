@@ -58,7 +58,7 @@ measured by eddy covariance at time \(t\) is given by:
   F_{EC}(t) = \int_{footprint(t)} F_{s,t} p(s,t) d s,
 \end{align}
 
-where p(s,t) is the footprint function for location s at time t this function integrates to one over the area (\(\int_{footprint(t)} p(s,t) d s = 1)\). The footprint has irregular shape and varies over time. For landscape analysis a fixed area of interest would be preferable. We therefore define a rectangular grid that extends well beyond the footprint, so that equation \ref{eq:EC} can be approximated as follows:
+where p(s,t) is the footprint function for location s at time t. This function integrates to one over the area: (\(\int_{footprint(t)} p(s,t) d s = 1)\). The footprint has irregular shape and varies over time. For landscape analysis a fixed area of interest would be preferable. We therefore define a rectangular grid that extends well beyond the footprint, so that equation \ref{eq:EC} can be approximated as follows:
 
 \begin{align}   \label{eq:weightMean}
   \widehat{\bar{F_t}} = \sum_{x = 1}^{n_x} \sum_{y = 1}^{n_y} F_{xyt} W_{xyt}
